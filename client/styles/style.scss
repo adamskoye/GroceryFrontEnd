@@ -1,0 +1,12 @@
+@use 'bootstrap-icons';
+
+$font-stack:    "Lucida Grande", Helvetica, sans-serif;
+
+body {
+  padding: 50px;
+  font: 14px $font-stack;
+}
+
+a {
+  color: #000;
+}
