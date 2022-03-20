@@ -1,7 +1,9 @@
 import { createApp } from "vue";
-
+import { createAuth0 } from '@auth0/auth0-vue';
 import $ from "jquery"
 import bootstrap from "bootstrap"
+
+require('bootstrap-icons/font/bootstrap-icons.css');
 
 import router from "./router"
 // import DeviceId from "./components/DeviceId.vue"
@@ -20,7 +22,7 @@ import router from "./router"
 import "./styles/style.scss"
 
 //console.log(bootstrap.Tooltip)
-console.log($)
+//console.log($)
 
 const fruitStoreApp = createApp({
 })
@@ -42,8 +44,15 @@ const fruitStoreApp = createApp({
 // // Tooltips
 // cheatersApp.directive("tooltip", tooltip)
 
-fruitStoreApp.use(router)
+fruitStoreApp.use(
+    createAuth0({
+      domain: "adamknight.us.auth0.com",
+      client_id: "QXcUQGbumllCisGPk80WQde49a5WttMT",
+      redirect_uri: window.location.origin
+    })
+  );
 
+fruitStoreApp.use(router)
 fruitStoreApp.mount('#app')
 
 export default fruitStoreApp

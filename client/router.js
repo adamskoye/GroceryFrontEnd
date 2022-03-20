@@ -1,16 +1,16 @@
 import { createWebHashHistory, createRouter } from "vue-router";
 
-// import CheatersListView from "./views/CheatersList.vue"
+import HomeView from "./views/Home.vue"
 // import UserView from "./views/User.vue"
 // import CompanyView from "./views/Company.vue"
 // import NotFound from "./views/NotFound.vue"
 
 const routes = [
-    // {
-    //     path: "/",
-    //     name: "Home",
-    //     component: CheatersListView,
-    // },
+    {
+        path: "/",
+        name: "Home",
+        component: HomeView,
+    },
     // {
     //     path: "/user/:userUuid",
     //     name: "user",
