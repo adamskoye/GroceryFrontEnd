@@ -8,8 +8,7 @@ const sassMiddleware = require('node-sass-middleware');
 
 const indexRouter = require('./routes');
 const usersRouter = require('./routes/users');
-
-
+const apiRouter = require('./routes/api');
 
 const app = express();
 
@@ -17,16 +16,18 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use('/users', usersRouter);
+app.use('/api', apiRouter);
+
 app.use(sassMiddleware({
   src: path.join(__dirname, 'public'),
   dest: path.join(__dirname, 'public'),
   indentedSyntax: true, // true = .sass and false = .scss
   sourceMap: true
 }));
-app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use(express.static(path.join(__dirname, 'public')));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

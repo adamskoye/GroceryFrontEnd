@@ -2,16 +2,16 @@
   <div class="LayoutDefault">
     <div class="container">
       <nav class="navbar navbar-dark bg-primary navbar-expand">
-        <a class="navbar-brand" href="#">Fruit Store</a>
-
+        <router-link class="navbar-brand" active-class="active" to="/">Fruit Store</router-link>
         <div class="container-fluid">
         <ul class="nav">
+        <!--
           <li class="nav-item">
-            <router-link class="nav-link" to="/">Home</router-link>
-            <!-- <a class="nav-link active" aria-current="page" href="#">Home</a> -->
+            <router-link class="nav-link" active-class="active" to="/">Home</router-link>
           </li>
+          -->
           <li class="nav-item" v-if="_isAuthenticated">
-            <router-link class="nav-link" to="/users">Users</router-link>
+            <router-link class="nav-link" active-class="active" to="/users">Users</router-link>
           </li>
         </ul>
         </div>

@@ -5,6 +5,8 @@ import UserView from "./views/User.vue"
 import UsersView from "./views/Users.vue"
 // import CompanyView from "./views/Company.vue"
 // import NotFound from "./views/NotFound.vue"
+import WarehouseSupplierView from "./views/warehouse/Supplier.vue"
+import WarehouseSuppliersView from "./views/warehouse/Suppliers.vue"
 
 const routes = [
     {
@@ -23,6 +25,17 @@ const routes = [
         component: UserView,
         props: true
     },
+    {
+        path: "/warehouse/suppliers",
+        name: "WarehouseSuppliers",
+        component: WarehouseSuppliersView,
+    },
+    {
+        path: "/warehouse/supplier/:supplierUuid",
+        name: "WarehouseSupplier",
+        component: WarehouseSupplierView,
+        props: true
+    },
     // {
     //     path: "/company/:companyUuid",
     //     name: "company",
@@ -36,8 +49,9 @@ const routes = [
 ];
 
 const router = createRouter({
-    history: createWebHashHistory(),
-    routes,
+  linkActiveClass: "active",
+  history: createWebHashHistory(),
+  routes,
 });
 
 export default router;
