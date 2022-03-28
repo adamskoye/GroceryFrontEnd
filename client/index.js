@@ -25,6 +25,7 @@ import "./styles/style.scss"
 //console.log($)
 
 const fruitStoreApp = createApp({
+
 })
 
 // Utility Components
@@ -44,13 +45,15 @@ const fruitStoreApp = createApp({
 // // Tooltips
 // cheatersApp.directive("tooltip", tooltip)
 
+
 fruitStoreApp.use(
     createAuth0({
-      domain: "adamknight.us.auth0.com",
-      client_id: "QXcUQGbumllCisGPk80WQde49a5WttMT",
-      redirect_uri: window.location.origin
-    })
-  );
+          domain: "adamknight.us.auth0.com",
+          client_id: "QXcUQGbumllCisGPk80WQde49a5WttMT",
+          redirect_uri: window.location.origin
+        }
+    )
+);
 
 fruitStoreApp.use(router)
 fruitStoreApp.mount('#app')

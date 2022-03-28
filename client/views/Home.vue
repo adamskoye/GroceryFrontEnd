@@ -1,27 +1,33 @@
 <script>
-    export default {
-        data() {
-            return {
-                message: "Hello",
-                user: this.$auth0.user,
-                isAuthenticated: this.$auth0.isAuthenticated
-            };
-        },
+    import LayoutDefault from "../layouts/LayoutDefault.vue"
 
-        methods: {
-            login() {
-                this.$auth0.loginWithRedirect();
-            }
-        }
+    export default {
+      name: "Home",
+      components: {
+        LayoutDefault
+      },
+      data() {
+          return {
+            message: "Hello",
+            _user: this.$auth0.user,
+            _token: this.$auth0.idTokenClaims,
+            _isAuthenticated: this.$auth0.isAuthenticated
+          };
+      },
     };
     
 </script>
 
 <template>
+  <layout-default>
     <div>{{message}}</div>
-    <button @click="login">Log in</button>
 
-    <pre v-if="isAuthenticated">
-        <code>{{ user }}</code>
+
+    <pre v-if="_isAuthenticated">
+        <code>{{ _user }}</code>
     </pre>
+    <pre v-if="_isAuthenticated">
+        <code>{{ _token }}</code>
+    </pre>
+  </layout-default>
 </template>
