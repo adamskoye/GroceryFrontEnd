@@ -18,22 +18,26 @@
               {payType: "oof", dailyLimit: 2, weeklyLimit: 3},
             ],
             payType: "",
-            dailyLimit: "",
-            weeklyLimit: ""
+            dailyLimit: null,
+            weeklyLimit: null
           }
       },
       methods: {
         addRow() {
           console.log(this.payType)
 
+          if(this.rows.length > 0) {
+            this.rows[this.rows.length - 1].dailyLimit = this.dailyLimit;
+            this.rows[this.rows.length - 1].weeklyLimit = this.weeklyLimit;
+          }
+
           this.rows.push({
-            payType: this.payType,
-            dailyLimit: this.dailyLimit,
-            weeklyLimit: this.weeklyLimit
+            payType: this.payType
           })
+
           this.payType = ""
-          this.dailyLimit = ""
-          this.weeklyLimit = ""
+          this.dailyLimit = null
+          this.weeklyLimit = null
         },
 
         deleteRow(index) {
@@ -41,7 +45,7 @@
         }
       }
     };
-    
+
 </script>
 
 <template>
@@ -58,8 +62,8 @@
 
       <div v-for="(row, index) of rows" class="row">
         <div class="col-sm">{{ row.payType }}</div>
-        <div class="col-sm">{{ row.dailyLimit }}</div>
-        <div class="col-sm">{{ row.weeklyLimit }}</div>
+        <div class="col-sm">{{ row.dailyLimit == null ? "-" : row.dailyLimit }}</div>
+        <div class="col-sm">{{ row.weeklyLimit == null ? "-" : row.weeklyLimit }}</div>
         <div class="col-sm"><button class="btn-danger" @click="deleteRow(index)"><span class="bi-trash"></span></button></div>
       </div>
 
@@ -67,32 +71,29 @@
 
       </div>
 
-      <form>
-        <div class="row">
-          <div class="col-sm">
-              <label class="form-label" for="payType">Pay Type</label>
-              <select id="payType" class="form-control" v-model="payType">
-                <option value="" disabled>Please Select</option>
-                <option>Regular Time</option>
-                <option>Double Time</option>
-                <option>Triple Time</option>
-              </select>
-          </div>
-          <div class="col-sm">
-            <label class="form-label" for="dailyLimit">Daily Limit</label>
-            <input type="number" id="dailyLimit" class="form-control" v-model="dailyLimit" :disabled="rows.length==0"/>
-          </div>
-          <div class="col-sm">
-            <label class="form-label" for="weeklyLimit">Weekly Limit</label>
-            <input type="number" id="weeklyLimit" class="form-control" v-model="weeklyLimit" :disabled="rows.length==0"/>
-          </div>
-          <div class="col-sm">
-            <div class="position-absolute bottom-0">
-            <button type="submit" id="addButton" class="btn-secondary" @click="addRow"><span class="bi-plus-circle"></span></button>
+      <div class="row">
+        <div class="col">
+          <form class="form-inline">
+            <div v-if="rows.length==0">
+              <span class="mr-2">My main Pay Type is</span>
             </div>
-          </div>
-        </div>
-      </form>
+            <div v-else>
+              <span class="mr-2">Any hours over</span>
+              <input type="number" id="dailyLimit" class="form-control mr-2 width-5" v-model="dailyLimit"/>
+              <span class="mr-2">a day, or</span>
+              <input type="number" id="weeklyLimit" class="form-control mr-2 width-5" v-model="weeklyLimit"/>
+              <span class="mr-2">a week become</span>
+            </div>
 
+            <select id="payType" class="form-control mr-2" v-model="payType">
+              <option value="" disabled>Please Select</option>
+              <option>Regular Time</option>
+              <option>Double Time</option>
+              <option>Triple Time</option>
+            </select>
+            <button type="submit" id="addButton" class="btn-secondary" @click="addRow"><span class="bi-plus-circle"></span></button>
+          </form>
+        </div>
+      </div>
   </layout-default>
 </template>
