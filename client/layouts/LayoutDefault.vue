@@ -5,11 +5,10 @@
         <router-link class="navbar-brand" active-class="active" to="/">Fruit Store</router-link>
         <div class="container-fluid">
         <ul class="nav">
-        <!--
           <li class="nav-item">
-            <router-link class="nav-link" active-class="active" to="/">Home</router-link>
+            <router-link class="nav-link" active-class="active" to="/prototype">Prototype</router-link>
           </li>
-          -->
+
           <li class="nav-item" v-if="_isAuthenticated">
             <router-link class="nav-link" active-class="active" to="/users">Users</router-link>
           </li>
@@ -28,7 +27,7 @@
         <slot/>
       </main>
     </div>
-    <div class="container">
+    <div class="container fixed-bottom">
       <footer class="LayoutDefault__footer">
       &copy; Awesome Company
       </footer>

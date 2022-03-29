@@ -3,6 +3,7 @@ import { createWebHashHistory, createRouter } from "vue-router";
 import HomeView from "./views/Home.vue"
 import UserView from "./views/User.vue"
 import UsersView from "./views/Users.vue"
+import PrototypeView from "./views/Prototype.vue"
 // import CompanyView from "./views/Company.vue"
 // import NotFound from "./views/NotFound.vue"
 import WarehouseSupplierView from "./views/warehouse/Supplier.vue"
@@ -35,6 +36,11 @@ const routes = [
         name: "WarehouseSupplier",
         component: WarehouseSupplierView,
         props: true
+    },
+    {
+        path: "/prototype",
+        name: "Prototype",
+        component: PrototypeView
     },
     // {
     //     path: "/company/:companyUuid",
