@@ -1,11 +1,9 @@
-import { createApp } from "vue";
-import { createAuth0 } from '@auth0/auth0-vue';
-import $ from "jquery"
-import bootstrap from "bootstrap"
-
-require('bootstrap-icons/font/bootstrap-icons.css');
-
+import {createApp} from "vue";
+import {createAuth0} from '@auth0/auth0-vue';
 import router from "./router"
+import axiosConfig from './services/axiosConfig'
+
+
 // import DeviceId from "./components/DeviceId.vue"
 // import SortableHeader from "./components/SortableHeader.vue"
 //
@@ -16,10 +14,9 @@ import router from "./router"
 // import UserDevices from "./components/UserDevices.vue"
 // import UserPings from "./components/UserPings.vue"
 // import UserOverlaps from "./components/UserOverlaps.vue"
-
 //import tooltip from "./directives/tooltip"
-
 import "./styles/style.scss"
+require('bootstrap-icons/font/bootstrap-icons.css');
 
 //console.log(bootstrap.Tooltip)
 //console.log($)
@@ -48,12 +45,15 @@ const fruitStoreApp = createApp({
 
 fruitStoreApp.use(
     createAuth0({
-          domain: "adamknight.us.auth0.com",
-          client_id: "QXcUQGbumllCisGPk80WQde49a5WttMT",
-          redirect_uri: window.location.origin
+            domain: "adamknight.us.auth0.com",
+            client_id: "QXcUQGbumllCisGPk80WQde49a5WttMT",
+            redirect_uri: window.location.origin,
+            audience: "https://grocery.fantail.io"
         }
     )
 );
+
+axiosConfig.jwtInterceptor();
 
 fruitStoreApp.use(router)
 fruitStoreApp.mount('#app')

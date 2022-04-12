@@ -1,10 +1,11 @@
 const axios = require('axios');
 const express = require('express');
 const router = express.Router();
+const jwtCheck = require('../security/jwtCheck')
 
 const usersServiceUrl = "http://localhost:8081/users/"
 
-router.get('/', async function(req, res, next) {
+router.get('/', jwtCheck, async function(req, res, next) {
       axios.get(usersServiceUrl, {
       })
       .then(function (response) {
@@ -18,7 +19,7 @@ router.get('/', async function(req, res, next) {
       });
 });
 
-router.get('/:userId', async function(req, res, next) {
+router.get('/:userId', jwtCheck, async function(req, res, next) {
     axios.get(usersServiceUrl + req.params.userId, {
     })
         .then(function (response) {

@@ -1,20 +1,14 @@
 <script>
     import LayoutDefault from "../layouts/LayoutDefault.vue"
-    import axios from 'axios'
+    import userService from "../services/userService";
 
     export default {
       name: "Users",
       components: {
         LayoutDefault
       },
-      created() {
-        axios.get('/users')
-            .then(response => {
-              this.users = response.data
-            })
-            .catch(error => {
-              console.log(error);
-            })
+      async created() {
+        this.users = userService.getUsers()
       },
       data() {
           return {
